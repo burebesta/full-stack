@@ -23,6 +23,7 @@ wss.on("connection", function connection(ws) {
   const numCLients = wss.clients.size;
   console.log("clients connected:", numCLients);
   console.log("client connected");
+
   wss.broadcast(`Current visitors count: ${numCLients}`);
   if (ws.readyState === ws.OPEN) {
     ws.send("welcome");
@@ -30,8 +31,7 @@ wss.on("connection", function connection(ws) {
 
   ws.on("close", function close() {
     wss.broadcast(`Current visitors count: ${numCLients}`);
-    console.log("client disconnected");
-    console.log("clients connected:", numCLients);
+    console.log("ws inside");
   });
 });
 
